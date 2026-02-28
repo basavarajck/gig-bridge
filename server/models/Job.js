@@ -27,14 +27,17 @@ const jobSchema = new mongoose.Schema({
         required: true
     },
     applicants: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
-    }],
-    status: {
-        type: String,
-        enum: ["open", "closed"],
-        default: "open"
-    }
-}, { timestamps: true });
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+}],
+selectedStudents: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+}],
+status: {
+    type: String,
+    enum: ["open", "closed"],
+    default: "open"
+}}, { timestamps: true });
 
 module.exports = mongoose.model("Job", jobSchema);
