@@ -7,7 +7,9 @@ const {
     applyForJob,
     getJobApplicants,
     selectStudent,
-    closeJob
+    closeJob,
+    getMyJobs,
+    getAppliedJobs
 } = require("../controllers/jobController");
 const router = express.Router();
 
@@ -38,5 +40,18 @@ router.put("/:id/close",
     protect,
     authorizeRoles("employer"),
     closeJob
+);
+// Employer - get my jobs
+router.get("/myjobs",
+    protect,
+    authorizeRoles("employer"),
+    getMyJobs
+);
+
+// Student - get applied jobs
+router.get("/applied",
+    protect,
+    authorizeRoles("student"),
+    getAppliedJobs
 );
 module.exports = router;

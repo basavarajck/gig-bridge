@@ -7,12 +7,15 @@ dotenv.config();
 connectDB();
 
 const app = express();
+const { errorHandler } = require("./middleware/errorMiddleware");
+
 
 app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/jobs", require("./routes/jobRoutes"));
+app.use(errorHandler);
 app.get("/", (req, res) => {
     res.send("Gig Bridge API Running");
 });
